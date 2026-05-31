@@ -22,7 +22,7 @@
         "instapay",
         "paymob"
     ],
-    "databaseConnectionString": "mongodb://localhost:27017/expresscart-test",
+    "databaseConnectionString": "",
     "theme": "Cloth",
     "trackStock": true,
     "orderHook": "",
