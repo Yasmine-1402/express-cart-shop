@@ -1,0 +1,6 @@
+{
+    "description": "Instapay (Manual Transfer)",
+    "orderStatus": "Pending",
+    "buttonText": "Place order and get Instapay details",
+    "resultMessage": "The order is placed. Please transfer the total amount to heba.hassan14@instapay using this link: <a href=\"https://ipn.eg/S/heba.hassan14/instapay/7MzaVY\" target=\"_blank\">Pay via Instapay</a>"
+}

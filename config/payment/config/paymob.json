@@ -1,0 +1,9 @@
+{
+    "description": "Pay securely with Credit Card (Paymob)",
+    "orderStatus": "Pending",
+    "buttonText": "Pay securely with Credit Card (Paymob)",
+    "apiKey": "",
+    "integrationId": "",
+    "iframeId": "",
+    "hmacSecret": ""
+}

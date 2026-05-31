@@ -1,0 +1,6 @@
+{
+    "description": "Cash on Delivery",
+    "orderStatus": "Pending",
+    "buttonText": "Place order, pay on delivery",
+    "resultMessage": "Your order is placed. Please prepare the total amount in cash for the delivery person."
+}

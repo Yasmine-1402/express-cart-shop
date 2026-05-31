@@ -10,4 +10,3 @@ bin/googleproducts.xml
 # Local environment file
 .env
 .env.*
-config/payment/config/*.json
