@@ -26,7 +26,7 @@ Configured and integrated multiple payment gateways to provide flexible checkout
 - **Data Reset Tooling**: Added a `reset.js` script to securely clear out test orders/data before moving the shop to a live production state.
 
 ### 4. UI, Design & Theme Adjustments
-- **Cloth Theme Customization**: Overhauled the frontend appearance, specifically targeting the active "Cloth" theme.
+- **Education Theme Customization**: Overhauled the frontend appearance, specifically targeting the active "Education" theme.
 - **Layout & CSS Fixes**: Fixed broken layouts (such as on the login and checkout pages) by modifying Handlebars templates (`.hbs`) and writing custom Less/CSS rules.
 - **Minification**: Ensured that any custom styles added to `style.css` and `admin.css` were properly minified into `style.min.css` so the application loads as fast as possible in production.
 - **Responsive Design**: Polished the mobile and desktop views to ensure a premium user experience across all devices.
