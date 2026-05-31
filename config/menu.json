@@ -1,0 +1,37 @@
+{
+    "items": [
+
+        {
+            "title": "Books",
+            "link": "/category/books",
+            "order": 1
+        },
+        {
+            "title": "Bundles",
+            "link": "/category/bundles",
+            "order": 2
+        },
+        {
+            "title": "Flashcards",
+            "link": "/category/flashcards",
+            "order": 3
+        },
+        {
+            "title": "Games",
+            "link": "/category/games",
+            "order": 4
+        },
+
+
+        {
+            "title": "About",
+            "link": "/pages/about",
+            "order": 7
+        },
+        {
+            "title": "Contact",
+            "link": "/pages/contact",
+            "order": 8
+        }
+    ]
+}

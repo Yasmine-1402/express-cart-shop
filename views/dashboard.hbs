@@ -1,0 +1,117 @@
+{{> partials/menu}}
+<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+    <div class="col-sm-12 mb-4">
+        <h2 style="font-size: 2rem; font-weight: 700; color: #1e293b;">Dashboard</h2>
+        <p style="color: #64748b; margin-top: 8px;">Welcome back! Here's an overview of your store performance.</p>
+    </div>
+
+    <!-- KPI Cards Grid -->
+    <div class="dashboard-grid">
+        <!-- Orders Card -->
+        <div class="dashboard-card card-orders">
+            <div class="card-icon">📦</div>
+            <div class="card-label">Total Orders</div>
+            <div class="card-value">{{dashboardData.ordersCount}}</div>
+            <div class="card-description">Orders placed in your store</div>
+        </div>
+
+        <!-- Revenue Card -->
+        <div class="dashboard-card card-revenue">
+            <div class="card-icon">💰</div>
+            <div class="card-label">Total Revenue</div>
+            <div class="card-value">{{currencySymbol config.currencySymbol}}{{formatAmount dashboardData.ordersAmount}}</div>
+            <div class="card-description">Total value of all orders</div>
+        </div>
+
+        <!-- Products Card -->
+        <div class="dashboard-card card-products">
+            <div class="card-icon">🏷️</div>
+            <div class="card-label">Products</div>
+            <div class="card-value">{{dashboardData.productsCount}}</div>
+            <div class="card-description">Active products for sale</div>
+        </div>
+
+        <!-- Items Sold Card -->
+        <div class="dashboard-card card-sold">
+            <div class="card-icon">✅</div>
+            <div class="card-label">Sold Items</div>
+            <div class="card-value">{{dashboardData.productsSold}}</div>
+            <div class="card-description">Total units sold</div>
+        </div>
+    </div>
+
+    <!-- Top Products Section -->
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title">
+                    🌟 Top Performing Products
+                </h5>
+                <h6 class="card-subtitle">Your best-selling products this period</h6>
+            </div>
+            <div class="card-body">
+                {{#if dashboardData.topProducts}}
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+                        {{#each dashboardData.topProducts}}
+                        <div style="display: flex; gap: 12px; padding: 16px; border-radius: 8px; background-color: #f8fafc; border: 1px solid #e2e8f0; transition: all 0.3s;">
+                            <!-- Product Image -->
+                            {{#if this.productImage}}
+                                <img src="{{this.productImage}}" style="width: 80px; height: 80px; border-radius: 8px; object-fit: cover;" alt="{{this._id}}">
+                            {{else}}
+                                <img src="/images/placeholder.png" style="width: 80px; height: 80px; border-radius: 8px; object-fit: cover;" alt="placeholder">
+                            {{/if}}
+
+                            <!-- Product Info -->
+                            <div style="flex: 1;">
+                                <h5 style="font-weight: 700; color: #1e293b; margin-bottom: 4px;">{{this._id}}</h5>
+                                <p style="font-size: 0.875rem; color: #64748b; margin-bottom: 8px;">Units sold</p>
+                                <div style="display: flex; align-items: center; gap: 8px;">
+                                    <span style="font-size: 1.5rem; font-weight: 700; color: #2563eb;">{{this.count}}</span>
+                                    <span style="display: inline-block; background-color: rgba(16, 185, 129, 0.1); color: #10b981; padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: 600;">TOP</span>
+                                </div>
+                            </div>
+                        </div>
+                        {{/each}}
+                    </div>
+                {{else}}
+                    <div style="text-align: center; padding: 40px 20px;">
+                        <div style="font-size: 3rem; margin-bottom: 16px;">📊</div>
+                        <h5 style="color: #1e293b; font-weight: 700; margin-bottom: 8px;">No Sales Yet</h5>
+                        <p style="color: #64748b;">Your top products will appear here once you start receiving orders.</p>
+                        <a href="/admin/orders" style="display: inline-block; margin-top: 16px; padding: 8px 16px; background-color: #2563eb; color: white; border-radius: 6px; text-decoration: none; font-weight: 600; transition: all 0.3s;" 
+                           onmouseover="this.style.backgroundColor='#1e40af'; this.style.transform='translateY(-2px)'"
+                           onmouseout="this.style.backgroundColor='#2563eb'; this.style.transform='translateY(0)'">
+                            View Orders
+                        </a>
+                    </div>
+                {{/if}}
+            </div>
+        </div>
+    </div>
+
+    <!-- Quick Actions -->
+    <div class="col-12" style="margin-top: 30px;">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title">⚡ Quick Actions</h5>
+            </div>
+            <div class="card-body">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px;">
+                    <a href="/admin/product/new" class="btn btn-primary" style="justify-content: center; text-decoration: none;">
+                        {{{feather 'plus'}}} Add Product
+                    </a>
+                    <a href="/admin/orders" class="btn" style="justify-content: center; text-decoration: none; background-color: #06b6d4; color: white; border: none; border-radius: 8px; font-weight: 600; transition: all 0.3s;">
+                        {{{feather 'package'}}} View Orders
+                    </a>
+                    <a href="/admin/customers" class="btn" style="justify-content: center; text-decoration: none; background-color: #f59e0b; color: white; border: none; border-radius: 8px; font-weight: 600; transition: all 0.3s;">
+                        {{{feather 'users'}}} Customers
+                    </a>
+                    <a href="/admin/settings" class="btn" style="justify-content: center; text-decoration: none; background-color: #8b5cf6; color: white; border: none; border-radius: 8px; font-weight: 600; transition: all 0.3s;">
+                        {{{feather 'settings'}}} Settings
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</main>

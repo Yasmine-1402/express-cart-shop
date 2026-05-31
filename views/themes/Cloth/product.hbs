@@ -1,0 +1,177 @@
+{{> themes/Cloth/front-menu}}
+<div class="product-layout col-sm-10 offset-sm-1">
+    <div class="row">
+        <div class="col-sm-12 col-md-6 mr-auto">
+            {{#if result.productImage}}
+                <div class="title-image-container">
+                    <div class="image-prev image-button"> {{{feather 'chevron-left'}}}</div>
+                    <img src="{{result.productImage}}" id="product-title-image" class="product-title-image img-fluid" alt="{{result.productTitle}}">
+                    <div class="image-next image-button"> {{{feather 'chevron-right'}}}</div>
+                </div>
+            {{else}}
+                <div class="title-image-container">
+                    <img src="/uploads/placeholder.png" id="product-title-image" class="product-title-image img-fluid" alt="{{result.productTitle}}">
+                </div>
+            {{/if}}
+            {{#ifCond @root.images.length '>' 1}}
+                <div class="row" style="margin-top:16px;">
+                {{#each @root.images}}
+                    <div class="vertical-center top-pad-20 col-6" style="padding:8px;">
+                        <img src="{{this.path}}" class="thumbnail-image img-fluid" style="border-radius:12px;">
+                    </div>
+                {{/each}}
+                </div>
+            {{/ifCond}}
+        </div>
+        <div class="col-sm-12 col-md-6 ml-auto">
+            <div class="row">
+                <div class="col-md-11" style="padding-top:8px;">
+                    <h1 style="font-size:28px;font-weight:800;color:var(--hp-text);margin-bottom:8px;">{{result.productTitle}}</h1>
+                </div>
+                {{#if variants}}
+                    <div class="col-md-11">
+                        <h4 class="product-price mp-0" style="font-size:28px;">{{currencySymbol config.currencySymbol}}{{variants.0.price}}</h4>
+                    </div>
+                {{else}}
+                    <div class="col-md-11">
+                        <h4 class="product-price mp-0" style="font-size:28px;">{{currencySymbol config.currencySymbol}}{{result.productPrice}}</h4>
+                    </div>
+                {{/if}}
+                {{#if variants}}
+                    <div class="col-md-11" style="margin-bottom:16px;">
+                        <p class="product-option" style="margin-bottom:8px;">{{ @root.__ "Options" }}</p>
+                        <select id="product_variant" class="form-control">
+                        {{#each variants}}
+                            <option value="{{this._id}}" data-price="{{this.price}}">{{this.title}}</option>
+                        {{/each}}
+                        </select>
+                    </div>
+                {{/if}}
+                {{#if config.trackStock}}
+                    {{#ifCond result.productStock '==' 0}}
+                    <div class="col-md-11">
+                        <div style="background:var(--hp-danger);color:#fff;padding:12px 20px;border-radius:var(--hp-radius-full);text-align:center;font-weight:700;margin-bottom:16px;">
+                            Out of stock
+                        </div>
+                    </div>
+                    {{/ifCond}}
+                {{/if}}
+                <div class="col-md-11 productOptions">
+                    <p class="product-option-text">{{ @root.__ "Quantity" }}</p>
+                    <div class="input-group" style="max-width:180px;">
+                        <div class="input-group-prepend">
+                            <button class="btn btn-primary qty-btn-minus" type="button">−</button>
+                        </div>
+                        <input type="number" class="form-control add-color text-center" id="product_quantity" maxlength="3" value="1">
+                        <div class="input-group-append">
+                            <button class="btn btn-primary qty-btn-plus" type="button">+</button>
+                        </div>
+                    </div>
+                </div>
+                {{#if result.productComment}}
+                <div class="col-md-11" style="margin-bottom:16px;">
+                    {{ @root.__ "Leave a comment?" }}
+                    <textarea class="form-control" id="product_comment" style="margin-top:8px;"></textarea>
+                </div>
+                {{/if}}
+                <div class="col-md-11 btnAddToCart">
+                    <button class="btn btn-primary btn-block product-add-to-cart" type="button" style="padding:14px;font-size:16px;">🛒 {{ @root.__ "Add to cart" }}</button>
+                </div>
+
+                <!-- What Your Child Will Learn -->
+                <div class="col-md-11" style="margin-top:24px;">
+                    <div style="background:var(--hp-bg-alt);border-radius:var(--hp-radius-lg);padding:20px;">
+                        <h5 style="font-weight:800;margin-bottom:12px;">🧒 What Your Child Will Learn</h5>
+                        <div style="display:flex;flex-wrap:wrap;gap:8px;">
+                            <span style="background:var(--hp-primary);color:#fff;padding:6px 14px;border-radius:var(--hp-radius-full);font-size:13px;font-weight:700;">🧠 Critical Thinking</span>
+                            <span style="background:var(--hp-secondary);color:#fff;padding:6px 14px;border-radius:var(--hp-radius-full);font-size:13px;font-weight:700;">✏️ Creativity</span>
+                            <span style="background:var(--hp-accent);color:var(--hp-text);padding:6px 14px;border-radius:var(--hp-radius-full);font-size:13px;font-weight:700;">📖 Reading Skills</span>
+                            <span style="background:var(--hp-warm);color:#fff;padding:6px 14px;border-radius:var(--hp-radius-full);font-size:13px;font-weight:700;">🤝 Social Skills</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-11 body_text" style="margin-top:16px;line-height:1.8;color:var(--hp-text-light);">
+                    {{{fixTags result.productDescription}}}
+                </div>
+                {{#if @root.config.modules.enabled.reviews}}
+                <div class="col-md-11 mb-3" style="margin-top:16px;">
+                    <button class="btn btn-outline-warning" id="add-review" style="border-radius:var(--hp-radius-full);">⭐ Add review</button>
+                    <div class="d-inline-block align-middle" style="margin-left:8px;">{{{@root.reviews.ratingHtml}}}</div>
+                    {{#if @root.reviews.reviews}}
+                    <a href="#collapseReviews" data-toggle="collapse" class="d-inline-block align-middle ml-3" style="font-weight:700;font-size:14px;">Recent reviews</a>
+                    {{/if}}
+                </div>
+                <div class="col-md-11">
+                    <ul class="list-group collapse" id="collapseReviews">
+                    {{#each @root.reviews.reviews}}
+                        <li class="list-group-item" style="border-radius:var(--hp-radius-md) !important;margin-bottom:8px;">
+                            <p class="text-muted small text-right" style="margin-bottom:4px;">{{timeAgo this.date}}</p>
+                            <p style="margin-bottom:4px;"><b>Rating:</b> {{this.rating}}</p>
+                            <p style="margin-bottom:4px;"><b>Title:</b> {{this.title}}</p>
+                            <p style="margin-bottom:0;"><b>Description:</b> {{this.description}}</p>
+                        </li>
+                    {{/each}}
+                    </ul>
+                </div>
+                {{/if}}
+            </div>
+        </div>
+    </div>
+    {{#if config.showRelatedProducts}}
+        {{#if relatedProducts}}
+        <div class="col-sm-12 mt-5">
+            <h4 style="font-weight:800;font-size:22px;margin-bottom:20px;">🌈 You might also love</h4>
+            <div class="row">
+                {{#each relatedProducts}}
+                <div class="col-md-3 col-6" style="margin-bottom:16px;">
+                    <div class="thumbnail" style="min-height:auto;">
+                        {{#if productPermalink}}
+                            <div class="product-wrapper">
+                                <a href="/product/{{this.productPermalink}}">
+                                    <div class="vertical-center img-thumbnail" style="height:160px;">
+                                        {{#if productImage}}
+                                            <img class="img-fluid" src="{{this.productImage}}" alt="{{this.productTitle}}">
+                                        {{else}}
+                                            <img class="img-fluid" src="/uploads/placeholder.png" alt="{{this.productTitle}}">
+                                        {{/if}}
+                                    </div>
+                                    <h3 class="product-title product-title-home top-pad-10" style="font-size:14px;min-height:auto;">
+                                        {{this.productTitle}}
+                                    </h3>
+                                </a>
+                            </div>
+                        {{else}}
+                            <a href="/product/{{this._id}}">
+                                <div class="vertical-center img-thumbnail" style="height:160px;">
+                                    {{#if productImage}}
+                                        <img class="img-fluid" src="{{this.productImage}}" alt="{{this.productTitle}}">
+                                    {{else}}
+                                        <img class="img-fluid" src="/uploads/placeholder.png" alt="{{this.productTitle}}">
+                                    {{/if}}
+                                </div>
+                                <h3 class="product-title product-title-home top-pad-10" style="font-size:14px;min-height:auto;">
+                                    {{this.productTitle}}
+                                </h3>
+                            </a>
+                        {{/if}}
+                        <h3 class="product-price mp-0 text-center" style="font-size:16px;">
+                            {{currencySymbol ../config.currencySymbol}}{{formatAmount productPrice}}
+                        </h3>
+                        <p class="text-center" style="padding:0 12px 12px;">
+                            {{#if productPermalink}}
+                            <a class="btn btn-primary btn-sm btn-block" href="/product/{{this.productPermalink}}">{{ @root.__ "View" }}</a>
+                            {{else}}
+                            <a class="btn btn-primary btn-sm btn-block" href="/product/{{this._id}}">{{ @root.__ "View" }}</a>
+                            {{/if}}
+                        </p>
+                    </div>
+                </div>
+                {{/each}}
+            </div>
+        </div>
+        {{/if}}
+    {{/if}}
+</div>
+<input type="hidden" id="productId" value="{{result._id}}">
+<input type="hidden" id="currencySymbol" value="{{currencySymbol config.currencySymbol}}">

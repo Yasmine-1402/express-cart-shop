@@ -1,0 +1,59 @@
+{
+    "cartTitle": "Heba Planet",
+    "cartDescription": "Educational Marketplace for Books, Games, Courses & Coaching",
+    "cartLogo": "",
+    "baseUrl": "http://localhost:1111",
+    "emailHost": "smtp.gmail.com",
+    "emailPort": 587,
+    "emailSecure": false,
+    "emailUser": "test@example.com",
+    "emailPassword": "",
+    "emailAddress": "test@example.com",
+    "productsPerRow": 3,
+    "productsPerPage": 6,
+    "footerHtml": "&lt;h4 class=&quot;text-center&quot;&gt;Heba Planet - Educational Resources &amp; Coaching&lt;/h4&gt;&lt;p class=&quot;text-center&quot;&gt;&copy; 2026 Heba Planet. All rights reserved.&lt;/p&gt;",
+    "googleAnalytics": "",
+    "injectJs": "",
+    "customCss": "",
+    "currencySymbol": "ج.م",
+    "currencyISO": "EGP",
+    "paymentGateway": [
+        "cod",
+        "instapay",
+        "paymob"
+    ],
+    "databaseConnectionString": "mongodb://localhost:27017/expresscart-test",
+    "theme": "Cloth",
+    "trackStock": true,
+    "orderHook": "",
+    "availableLanguages": [
+        "en",
+        "it"
+    ],
+    "defaultLocale": "en",
+    "maxQuantity": 25,
+    "twitterHandle": "",
+    "facebookAppId": "",
+    "facebookUrl": "https://www.facebook.com/Heba.Hassan1402",
+    "instagramUrl": "https://www.instagram.com/hebahassan6305/",
+    "productOrderBy": "date",
+    "productOrder": "descending",
+    "modules": {
+        "enabled": {
+            "shipping": "shipping-basic",
+            "discount": "discount-voucher",
+            "reviews": "reviews-basic"
+        },
+        "loaded": {
+            "shipping": {},
+            "discount": {},
+            "reviews": {}
+        }
+    },
+    "showRelatedProducts": true,
+    "showHomepageVariants": false,
+    "secretCookie": "",
+    "secretSession": "",
+    "themeViews": "../views/themes/Cloth/",
+    "env": ""
+}

@@ -1,0 +1,31 @@
+{
+    "properties": {
+        "description": {
+            "type": "string"
+        },
+        "orderStatus": {
+            "type": "string"
+        },
+        "buttonText": {
+            "type": "string"
+        },
+        "apiKey": {
+            "type": "string"
+        },
+        "integrationId": {
+            "type": "string"
+        },
+        "iframeId": {
+            "type": "string"
+        },
+        "hmacSecret": {
+            "type": "string"
+        }
+    },
+    "required": [
+        "description",
+        "orderStatus",
+        "buttonText"
+    ],
+    "additionalProperties": false
+}

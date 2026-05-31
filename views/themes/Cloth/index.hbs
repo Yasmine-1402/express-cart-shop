@@ -1,0 +1,172 @@
+{{> themes/Cloth/front-menu}}
+<div class="productsWrapper col-sm-12 col-md-10 offset-md-1">
+    {{#if filtered}}
+        <div class="product-layout product-results col-sm-12">
+            {{#ifCond @root.paginateUrl '==' 'category'}}
+            <h1>{{ @root.__ "Category" }}: <strong>{{@root.searchTerm}}</strong></h1>
+            {{else}}
+            <h1>{{ @root.__ "Search results" }}: <strong>{{@root.searchTerm}}</strong></h1>
+            {{/ifCond}}
+        </div>
+    {{else}}
+        <!-- ===== HERO SECTION ===== -->
+        <div class="hp-hero animate-fade-in-up">
+            <div class="hp-hero-icons">📚 ⭐ 🎲 🎨</div>
+            <h1>Every child is a <span>star learner</span> ⭐</h1>
+            <p>Discover books, games, and activities designed to make learning a joyful adventure for your little ones.</p>
+            <a href="#hp-products" class="btn btn-cta">Start Learning Journey 🚀</a>
+        </div>
+
+        <!-- ===== CATEGORY CARDS ===== -->
+        <div class="hp-categories">
+            <h2>✨ Explore Learning Paths</h2>
+            <div class="hp-cat-grid">
+                <a href="/category/books" class="hp-cat-card animate-fade-in-up animate-delay-1">
+                    <span class="cat-icon">📚</span>
+                    <div class="cat-title">Books</div>
+                    <div class="cat-desc">Stories & workbooks</div>
+                </a>
+                <a href="/category/bundles" class="hp-cat-card animate-fade-in-up animate-delay-2">
+                    <span class="cat-icon">🎁</span>
+                    <div class="cat-title">Bundles</div>
+                    <div class="cat-desc">Value learning packs</div>
+                </a>
+                <a href="/category/flashcards" class="hp-cat-card animate-fade-in-up animate-delay-3">
+                    <span class="cat-icon">🃏</span>
+                    <div class="cat-title">Flashcards</div>
+                    <div class="cat-desc">Quick learning fun</div>
+                </a>
+                <a href="/category/games" class="hp-cat-card animate-fade-in-up animate-delay-4">
+                    <span class="cat-icon">🎲</span>
+                    <div class="cat-title">Games</div>
+                    <div class="cat-desc">Play & learn together</div>
+                </a>
+            </div>
+        </div>
+
+        <!-- ===== PRODUCTS HEADER ===== -->
+        <div class="hp-section-header" id="hp-products">
+            <h2>🌟 Popular Products</h2>
+            <p>Hand-picked educational resources loved by parents</p>
+        </div>
+    {{/if}}
+
+    <div class="row product-layout productsWrapper">
+        {{#ifCond results.length '==' 0}}
+            <div class="col-sm-12">
+                <div style="text-align:center;padding:60px 20px;">
+                    <div style="font-size:64px;margin-bottom:16px;">🔍</div>
+                    <h3 style="color:var(--hp-text-light);font-weight:700;">No products found</h3>
+                    <p style="color:var(--hp-text-muted);">Try a different search or browse our categories above</p>
+                    <a href="/" class="btn btn-primary" style="margin-top:16px;">← Back to Home</a>
+                </div>
+            </div>
+        {{/ifCond}}
+        {{#each results}}
+            <div class="{{perRowClass ../config.productsPerRow}}">
+                <div class="thumbnail">
+                    {{#if productPermalink}}
+                        <div class="product-wrapper">
+                            <a href="/product/{{this.productPermalink}}">
+                                <div class="vertical-center img-thumbnail">
+                                    {{#if productImage}}
+                                        <img class="img-fluid" src="{{this.productImage}}" alt="{{this.productTitle}}">
+                                    {{else}}
+                                        <img class="img-fluid" src="/uploads/placeholder.png" alt="{{this.productTitle}}">
+                                    {{/if}}
+                                </div>
+                                <h3 class="product-title product-title-home" style="color:#2D3436 !important;font-size:15px;font-weight:700;padding:12px 12px 0;margin:0;display:block;text-align:center;">
+                                    {{this.productTitle}}
+                                </h3>
+                            </a>
+                        </div>
+                    {{else}}
+                        <a href="/product/{{this._id}}">
+                            <div class="vertical-center img-thumbnail">
+                                {{#if productImage}}
+                                    <img class="img-fluid" src="{{this.productImage}}" alt="{{this.productTitle}}">
+                                {{else}}
+                                    <img class="img-fluid" src="/uploads/placeholder.png" alt="{{this.productTitle}}">
+                                {{/if}}
+                            </div>
+                            <h3 class="product-title product-title-home" style="color:#2D3436 !important;font-size:15px;font-weight:700;padding:12px 12px 0;margin:0;display:block;text-align:center;">
+                                {{this.productTitle}}
+                            </h3>
+                        </a>
+                    {{/if}}
+                    {{#if variants}}
+                        <div class="col-md-12">
+                            {{#if @root.config.showHomepageVariants}}
+                            <select id="productVariant-{{this._id}}" class="productVariant form-control mb-2">
+                            {{#each variants}}
+                                <option value="{{this._id}}" data-price="{{this.price}}">{{this.title}} - {{currencySymbol @root.config.currencySymbol}}{{this.price}}</option>
+                            {{/each}}
+                            </select>
+                            {{else}}
+                            <h4 class="product-price mp-0 text-center">
+                                {{currencySymbol @root.config.currencySymbol}}{{formatAmount variants.0.price}}
+                            </h4>
+                            {{/if}}
+                        </div>
+                    {{else}}
+                        <h4 class="product-price mp-0 text-center">
+                            {{currencySymbol @root.config.currencySymbol}}{{formatAmount productPrice}}
+                        </h4>
+                    {{/if}}
+                    <p class="text-center" style="padding:0 16px 16px;">
+                        {{#if @root.config.showHomepageVariants}}
+                        <a class="btn btn-primary btn-block add-variant-to-cart" data-id="{{this._id}}" role="button">🛒 {{ @root.__ "Add to cart" }}</a>
+                        {{else}}
+                        <a class="btn btn-primary btn-block add-to-cart" data-id="{{this._id}}" data-link="{{this.productPermalink}}" data-has-variants="{{checkProductVariants this.variants}}" role="button">🛒 {{ @root.__ "Add to cart" }}</a>
+                        {{/if}}
+                    </p>
+                </div>
+            </div>
+        {{/each}}
+    </div>
+
+    {{#unless filtered}}
+    <!-- ===== TESTIMONIALS ===== -->
+    <div class="hp-testimonials">
+        <h2>💬 What Parents Say</h2>
+        <div class="hp-testimonial-grid">
+            <div class="hp-testimonial-card animate-fade-in-up animate-delay-1">
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+                <div class="quote">"My daughter loves the flashcards! She asks to practice every day. The quality is amazing and the illustrations are so engaging."</div>
+                <div class="author">— Sarah M., Mom of KG1</div>
+            </div>
+            <div class="hp-testimonial-card animate-fade-in-up animate-delay-2">
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+                <div class="quote">"The activity bundles are a lifesaver for weekends. Educational AND fun — exactly what we needed for our little learner."</div>
+                <div class="author">— Ahmed K., Dad of KG2</div>
+            </div>
+            <div class="hp-testimonial-card animate-fade-in-up animate-delay-3">
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+                <div class="quote">"Heba Planet understands what children need. The books are thoughtfully designed and my son has improved so much!"</div>
+                <div class="author">— Nour H., Mom of Pre-K</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== NEWSLETTER ===== -->
+    <div class="hp-newsletter">
+        <h2>📬 Join Our Learning Family</h2>
+        <p>Get tips, new product alerts, and exclusive discounts for your little learner</p>
+        <div class="input-group">
+            <input type="email" class="form-control" placeholder="Enter your email address">
+            <div class="input-group-append">
+                <button class="btn" type="button">Subscribe ✨</button>
+            </div>
+        </div>
+    </div>
+    {{/unless}}
+</div>
+
+<input type="hidden" id="itemsPerPage" value="{{productsPerPage}}" >
+<input type="hidden" id="pageNum" value="{{pageNum}}">
+<input type="hidden" id="totalItemCount" value="{{totalProductCount}}">
+<input type="hidden" id="paginateUrl" value="{{paginateUrl}}">
+<input type="hidden" id="searchTerm" value="{{searchTerm}}">
+<div class="col-md-12">
+    <div id="pager" class="d-flex justify-content-center"></div>
+</div>

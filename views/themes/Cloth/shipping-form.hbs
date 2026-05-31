@@ -1,0 +1,117 @@
+<div class="row">
+    <!-- Personal Information -->
+    <div class="col-sm-12" style="margin-bottom:8px;">
+        <p style="font-weight:800;font-size:14px;color:var(--hp-primary-dark);margin-bottom:4px;text-transform:uppercase;letter-spacing:1px;">👤 Personal Information</p>
+    </div>
+    <div class="col-sm-12 col-md-12">
+        <div class="form-group">
+            <label for="shipEmail">Email Address <span style="color:var(--hp-danger);">*</span></label>
+            <input type="email" class="form-control customerDetails" id="shipEmail" name="shipEmail" minlength="5" placeholder="your@email.com" value="{{@root.session.customerEmail}}" required>
+            <div class="invalid-feedback">
+                Please enter a valid email address
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-12 col-md-6">
+        <div class="form-group">
+            <label for="shipFirstname">First Name <span style="color:var(--hp-danger);">*</span></label>
+            <input type="text" class="form-control customerDetails" id="shipFirstname" name="shipFirstname" placeholder="First name" value="{{@root.session.customerFirstname}}" required>
+        </div>
+    </div>
+    <div class="col-sm-12 col-md-6">
+        <div class="form-group">
+            <label for="shipLastname">Last Name <span style="color:var(--hp-danger);">*</span></label>
+            <input type="text" class="form-control customerDetails" id="shipLastname" name="shipLastname" placeholder="Last name" value="{{@root.session.customerLastname}}" required>
+        </div>
+    </div>
+    <div class="col-sm-12 col-md-12">
+        <div class="form-group">
+            <label for="shipPhoneNumber">Phone Number <span style="color:var(--hp-danger);">*</span></label>
+            <input type="tel" class="form-control customerDetails" id="shipPhoneNumber" name="shipPhoneNumber" placeholder="e.g. 01xxxxxxxxx" value="{{@root.session.customerPhone}}" required>
+        </div>
+    </div>
+
+    <!-- Shipping Address -->
+    <div class="col-sm-12" style="margin-top:8px;margin-bottom:8px;">
+        <hr style="border-color:var(--hp-border);margin:8px 0;">
+        <p style="font-weight:800;font-size:14px;color:var(--hp-primary-dark);margin-bottom:4px;text-transform:uppercase;letter-spacing:1px;">📍 Shipping Address</p>
+    </div>
+    <div class="col-sm-12 col-md-6">
+        <div class="form-group">
+            <label for="shipCountry">Country <span style="color:var(--hp-danger);">*</span></label>
+            <select class="form-control country-selector" id="shipCountry" name="shipCountry" data-city-select="shipState" data-city-input="shipStateText" required>
+                {{#each countryList}}
+                <option {{selectState this @root.session.customerCountry}} value="{{this}}">{{this}}</option>
+                {{/each}}
+            </select>
+        </div>
+    </div>
+    <div class="col-sm-12 col-md-6">
+        <div class="form-group">
+            <label for="shipState">City / Governorate <span style="color:var(--hp-danger);">*</span></label>
+            <!-- Egypt cities dropdown -->
+            <select class="form-control customerDetails city-dropdown" id="shipState" name="shipState" required>
+                <option value="" disabled selected>Select City</option>
+                <option value="Cairo" {{selectState "Cairo" @root.session.customerState}}>Cairo</option>
+                <option value="Alexandria" {{selectState "Alexandria" @root.session.customerState}}>Alexandria</option>
+                <option value="Giza" {{selectState "Giza" @root.session.customerState}}>Giza</option>
+                <option value="Port Said" {{selectState "Port Said" @root.session.customerState}}>Port Said</option>
+                <option value="Suez" {{selectState "Suez" @root.session.customerState}}>Suez</option>
+                <option value="Luxor" {{selectState "Luxor" @root.session.customerState}}>Luxor</option>
+                <option value="Aswan" {{selectState "Aswan" @root.session.customerState}}>Aswan</option>
+                <option value="Asyut" {{selectState "Asyut" @root.session.customerState}}>Asyut</option>
+                <option value="Beheira" {{selectState "Beheira" @root.session.customerState}}>Beheira</option>
+                <option value="Beni Suef" {{selectState "Beni Suef" @root.session.customerState}}>Beni Suef</option>
+                <option value="Dakahlia" {{selectState "Dakahlia" @root.session.customerState}}>Dakahlia</option>
+                <option value="Damietta" {{selectState "Damietta" @root.session.customerState}}>Damietta</option>
+                <option value="Fayoum" {{selectState "Fayoum" @root.session.customerState}}>Fayoum</option>
+                <option value="Gharbia" {{selectState "Gharbia" @root.session.customerState}}>Gharbia</option>
+                <option value="Hurghada" {{selectState "Hurghada" @root.session.customerState}}>Hurghada</option>
+                <option value="Ismailia" {{selectState "Ismailia" @root.session.customerState}}>Ismailia</option>
+                <option value="Kafr El Sheikh" {{selectState "Kafr El Sheikh" @root.session.customerState}}>Kafr El Sheikh</option>
+                <option value="Matruh" {{selectState "Matruh" @root.session.customerState}}>Matruh</option>
+                <option value="Minya" {{selectState "Minya" @root.session.customerState}}>Minya</option>
+                <option value="Monufia" {{selectState "Monufia" @root.session.customerState}}>Monufia</option>
+                <option value="New Valley" {{selectState "New Valley" @root.session.customerState}}>New Valley</option>
+                <option value="North Sinai" {{selectState "North Sinai" @root.session.customerState}}>North Sinai</option>
+                <option value="Qalyubia" {{selectState "Qalyubia" @root.session.customerState}}>Qalyubia</option>
+                <option value="Qena" {{selectState "Qena" @root.session.customerState}}>Qena</option>
+                <option value="Red Sea" {{selectState "Red Sea" @root.session.customerState}}>Red Sea</option>
+                <option value="Sharqia" {{selectState "Sharqia" @root.session.customerState}}>Sharqia</option>
+                <option value="Sohag" {{selectState "Sohag" @root.session.customerState}}>Sohag</option>
+                <option value="South Sinai" {{selectState "South Sinai" @root.session.customerState}}>South Sinai</option>
+            </select>
+            <!-- Free text for international -->
+            <input type="text" class="form-control customerDetails city-text" id="shipStateText" name="shipState" placeholder="Enter your city" value="{{@root.session.customerState}}" style="display:none;" required>
+        </div>
+    </div>
+    <div class="col-sm-12 col-md-8">
+        <div class="form-group">
+            <label for="shipAddr1">Street Address <span style="color:var(--hp-danger);">*</span></label>
+            <input type="text" class="form-control customerDetails" id="shipAddr1" name="shipAddr1" placeholder="Street name, building, floor" value="{{@root.session.customerAddress1}}" required>
+        </div>
+    </div>
+    <div class="col-sm-12 col-md-4">
+        <div class="form-group">
+            <label for="shipPostcode">Post Code</label>
+            <input type="text" class="form-control customerDetails" id="shipPostcode" name="shipPostcode" placeholder="e.g. 11511" value="{{@root.session.customerPostcode}}" required>
+        </div>
+    </div>
+    <div class="col-sm-12 col-md-12">
+        <div class="form-group">
+            <label for="shipAddr2">Additional Details <span style="font-weight:400;color:var(--hp-text-muted);">(optional)</span></label>
+            <input type="text" class="form-control customerDetails" id="shipAddr2" name="shipAddr2" placeholder="Apartment, landmark, etc." value="{{@root.session.customerAddress2}}">
+        </div>
+    </div>
+
+    <!-- Order Notes -->
+    <div class="col-sm-12" style="margin-top:8px;">
+        <hr style="border-color:var(--hp-border);margin:8px 0;">
+    </div>
+    <div class="col-sm-12 col-md-12">
+        <div class="form-group">
+            <label for="orderComment">Order Notes <span style="font-weight:400;color:var(--hp-text-muted);">(optional)</span></label>
+            <textarea class="form-control customerDetails" placeholder="Any special requests or delivery notes..." id="orderComment" name="orderComment" rows="3">{{@root.session.orderComment}}</textarea>
+        </div>
+    </div>
+</div>

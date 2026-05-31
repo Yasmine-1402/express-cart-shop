@@ -1,0 +1,21 @@
+<div class="col-md-8 offset-md-2 col-sm-12">
+    <div class="hp-celebration">
+        <div class="celebration-icon">🎉</div>
+        {{#paymentMessage result.orderStatus}}{{/paymentMessage}}
+        <div style="background:var(--hp-card-bg);border-radius:var(--hp-radius-lg);padding:24px;box-shadow:var(--hp-shadow-md);margin:24px auto;max-width:400px;">
+            <p style="margin-bottom:8px;"><strong>{{ @root.__ "Order ID" }}:</strong> {{result._id}}</p>
+            {{#if result.transaction}}
+            <p style="margin-bottom:16px;"><strong>{{ @root.__ "Payment ID" }}:</strong> {{result.transaction}}</p>
+            {{/if}}
+            
+            {{#if result.orderPaymentMessage}}
+            <hr style="margin:16px 0; border-top:1px solid #eaeaea;">
+            <div style="font-size:0.95em; color:var(--hp-text-body); line-height:1.6; text-align:left;">
+                {{{result.orderPaymentMessage}}}
+            </div>
+            {{/if}}
+        </div>
+        {{#paymentOutcome result.orderStatus}}{{/paymentOutcome}}
+        <a href="/" class="btn btn-primary" style="margin-top:16px;">🏠 Back to Home</a>
+    </div>
+</div>

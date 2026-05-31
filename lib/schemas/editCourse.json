@@ -1,0 +1,49 @@
+{
+    "$id": "editCourse",
+    "type": "object",
+    "properties": {
+        "courseId": {
+            "type": "string"
+        },
+        "coursePermalink": {
+            "type": "string",
+            "isNotEmpty": true,
+            "minLength": 2
+        },
+        "courseTitle": {
+            "type": "string",
+            "isNotEmpty": true,
+            "minLength": 5
+        },
+        "coursePrice": {
+            "type": "string",
+            "format": "amount"
+        },
+        "courseDescription": {
+            "type": "string",
+            "isNotEmpty": true,
+            "minLength": 25
+        },
+        "instructor": {
+            "type": "string"
+        },
+        "duration": {
+            "type": "string"
+        },
+        "enrollmentLimit": {
+            "type": ["number", "null"]
+        },
+        "coursePublished": {
+            "type": "boolean"
+        }
+    },
+    "errorMessage": {
+        "properties": {
+            "coursePrice": "Should be a full 2 decimal value. Eg: 10.99",
+            "coursePublished": "Should be either true or false"
+        }
+    },
+    "required": [
+        "courseId"
+    ]
+}
