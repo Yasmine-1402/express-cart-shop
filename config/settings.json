@@ -2,7 +2,7 @@
     "cartTitle": "Heba Planet",
     "cartDescription": "Educational Marketplace for Books, Games, Courses & Coaching",
     "cartLogo": "",
-    "baseUrl": "http://localhost:1111",
+    "baseUrl": "https://heba-planet14.onrender.com",
     "emailHost": "smtp.gmail.com",
     "emailPort": 587,
     "emailSecure": false,
